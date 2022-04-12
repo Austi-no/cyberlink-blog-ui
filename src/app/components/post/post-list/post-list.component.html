@@ -1,0 +1,122 @@
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>
+                <div class="ui breadcrumb mt-3">
+
+                    <a class="section">Home</a>
+                    <div class="divider"> / </div>
+                    <a class="section">Settings</a>
+                    <div class="divider"> / </div>
+                    <div class="active section">Manage-User</div>
+
+                </div>
+                <span class="pull-right">
+
+
+          <a (click)="gotocreatepost()" class="btn btn-sm btn-primary">
+            <span class="fa fa-plus-circle"></span> Create post</a>
+                </span>
+            </h1>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Page Content -->
+<div class="container mt-4 shadow">
+
+    <div class="row">
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+            <!-- Search Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Search</h5>
+                <div class="card-body">
+                    <div class="ui mini icon input">
+                        <input type="text" placeholder="Search post..." [(ngModel)]="searchfilter">
+                        <i class="search icon"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Categories</h5>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-6" *ngFor="let list of categoryList">
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a href="#">{{list?.categoryName}}</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Side Widget -->
+            <div class="card my-4">
+                <h5 class="card-header">Side Widget</h5>
+                <div class="card-body">
+                    You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Blog Entries Column -->
+        <div class="col-md-8 mt-4">
+
+
+            <!-- Blog Post -->
+            <div class="ui segments mb-4" *ngFor="let list of  createPostList.slice().reverse() | filter:searchfilter | paginate: { itemsPerPage: 3, currentPage: p } ">
+
+                <div class="ui segment ">
+                    <a class="ui red ribbon label" *ngIf="list.approved == false">Pending <i
+              class="ui question circle icon ml-2"></i></a>
+                    <a class="ui green ribbon label" *ngIf="list.approved==true">Approved <i
+              class="ui check circle icon ml-2"></i></a>
+                    <div class="row">
+
+                        <div class="col-8 ">
+                            <h2 class="card-title ">{{list.title}} </h2>
+                            <p></p>
+                            <p class="card-text ">{{list.excerpt}}</p>
+                        </div>
+
+                        <div class="col-3 ">
+
+                            <img class="card-img-top img-thumbnail " [src]="list?.imageUrl" height="100%" width="100%" alt="{{list?.imageName }}">
+                        </div>
+                    </div>
+
+                    <a class="ui label " (click)="viewPost(list.id)">Preview <i class="fa fa-arrow-circle-o-up "></i></a>
+                    <a class="ui green label " (click)="approvePost(list)">Approve <i class="fa fa-check-circle-o "></i></a>
+                    <a class="ui  blue label" (click)="updatePost(list)">Edit <i class="fa fa-edit "></i></a>
+                    <a class="ui  red label " (click)="deletePost(list.id)">Delete <i class="fa fa-trash "></i></a>
+
+                </div>
+                <div class="ui secondary segment ">
+                    {{list.dateCreated|date}} <span>by</span>
+                    <a class="ml-2" href="#">{{list?.createdBy?.surname |uppercase}} {{list?.createdBy?.lastName | uppercase}}</a>
+                </div>
+            </div>
+
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+
+
+        </div>
+
+
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->

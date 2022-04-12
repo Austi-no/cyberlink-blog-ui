@@ -1,0 +1,109 @@
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-pic js-tilt" data-tilt>
+                <br><br><br><br><br>
+                <img src="assets/img//img-01.png" alt="IMG">
+            </div>
+            <form class="login100-form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                <span class="login100-form-title" style="color: white;text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;">  Create New Account</span>
+
+                <div class="wrap-input100 control">
+                    <input class="input100" type="text" placeholder="First Name" formControlName="lastName" [ngClass]="{'is-invalid': submitted &&  f.lastName.errors}" />
+                    <span class=" focus-input100 "></span>
+                    <span class="symbol-input100 "><i class="fa fa-user " aria-hidden="true "></i></span>
+                    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                        <div *ngIf="f.lastName.errors.required">
+                            Last Name is required
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wrap-input100 control">
+                    <input class="input100 " type="text " placeholder="Surname" formControlName="surname" [ngClass]="{'is-invalid': submitted &&  f.surname.errors}" />
+                    <span class="focus-input100 "></span>
+                    <span class="symbol-input100 "><i class="fa fa-user " aria-hidden="true "></i></span>
+                    <div *ngIf="submitted && f.surname.errors" class="invalid-feedback">
+                        <div *ngIf="f.surname.errors.required">
+                            Last Name is required
+                        </div>
+                    </div>
+                </div>
+                <div class="wrap-input100 control">
+                    <input class="input100 " type="text " placeholder="Username" formControlName="username" [ngClass]="{'is-invalid': submitted &&  f.username.errors}" />
+                    <span class="focus-input100 "></span>
+                    <span class="symbol-input100 "><i class="fa fa-user " aria-hidden="true "></i></span>
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">
+                            User Name is required
+                        </div>
+                        <div *ngIf="f.username.errors.minlength">
+                            User Name must be atleast 6 characters</div>
+                    </div>
+                </div>
+
+                <div class="wrap-input100 control ">
+                    <input class="input100 " type="email " placeholder="Email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                    <span class="focus-input100 "></span>
+                    <span class="symbol-input100 "><i class="fa fa-envelope " aria-hidden="true "></i></span>
+
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">
+                            Email is required
+                        </div>
+                        <div *ngIf="f.email.errors.email">Enter a valid email address</div>
+                    </div>
+                </div>
+                <div class="wrap-input100 control">
+                    <input class="input100 " type="password " placeholder="Password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                    <span class="focus-input100 "></span>
+                    <span class="symbol-input100 "> <i class="fa fa-lock " aria-hidden="true "></i></span>
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">
+                            Password is required
+                        </div>
+                        <div *ngIf="f.password.errors?.invalidPassword">
+                            Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase letter and 1 number
+                        </div>
+                    </div>
+                </div>
+                <div class="wrap-input100 control">
+                    <input class="input100 " type="password " placeholder="Confirm Password" formControlName="confirmPassword" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }">
+                    <span class="focus-input100 "></span>
+                    <span class="symbol-input100 "> <i class="fa fa-lock " aria-hidden="true "></i></span>
+                    <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                        <div *ngIf=" f.confirmPassword.errors?.required">
+                            Confirm Password is required</div>
+                        <div *ngIf="f.confirmPassword.errors?.passwordMismatch">
+                            Passwords doesnot match</div>
+                    </div>
+
+                </div>
+
+
+
+
+                <!-- <div class="container-login100-form-btn ">
+          <button class="login100-form-btn " (click)="onSubmit() ">
+            Create New Account <span> <i class="fa fa-long-arrow-right m-l-5 " aria-hidden="true "></i></span>
+          </button>
+        </div> -->
+                <div class="container-login100-form-btn"><button class="login100-form-btn" (click)="onSubmit() " [className]="  'ui fluid large primary submit button' ">Create Account</button></div>
+
+                <div class="text-center p-t-12 ">
+                    <span class="txt1 ">
+          Already Have an Account?
+        </span>
+
+                </div>
+
+                <div class="text-center p-t-136 ">
+                    <a class="txt2 ">
+          Login
+          <i class="fa fa-long-arrow-left m-l-5 " aria-hidden="true "></i>
+        </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

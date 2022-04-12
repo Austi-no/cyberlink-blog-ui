@@ -1,0 +1,89 @@
+<div class="ui breadcrumb mt-3">
+    <a class="section">Home</a>
+    <div class="divider"> / </div>
+    <a class="section">Post</a>
+    <div class="divider"> / </div>
+    <div class="active section">Add Category</div>
+</div>
+
+<div class="ui menu">
+
+    <div class="item">
+        <div class="ui action input">
+            <div class="ui compact menu">
+                <div class="ui simple primary dropdown item"><i class="save icon"></i> Export
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <div class="item">PDF</div>
+                        <div class="item">EXCEL</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="right item">
+        <div class="ui icon input">
+            <input type="text" placeholder="Search...">
+            <i class="search icon"></i>
+        </div>
+    </div>
+
+
+</div>
+
+
+<div class="row mt-4">
+    <div class="col-md-6">
+
+        <div class="ui segment">
+
+            <form class="ui form mt-4" [formGroup]="categoryFormGroup">
+
+                <div class="three fields">
+                    <div class="three wide  field mt-2">
+                        <label>Category Name</label>
+                    </div>
+                    <div class="six wide field">
+
+                        <input type="text" placeholder="permission name" formControlName="categoryName" style="border: 1px solid back;" />
+                    </div>
+                    <div class=" three wide field ">
+                        <div class="ui primary fluid submit button " (click)="saveCategory()"><span><i class="fa fa-plus"></i></span> Add</div>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+    <div class="col-md-6 ">
+
+        <div class="ui segment ">
+            <table class="ui blue table stripe mt-4 ">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th class="text-center ">Category Name</th>
+                        <th class="text-center ">Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let list of categoryList; let i=index">
+                        <td>{{i+1}}</td>
+                        <td class="text-center ">{{list.categoryName}}</td>
+                        <td class="text-center ">{{list.dateCreated | date}}</td>
+
+                        <td><i class="fa fa-edit mr-2 " aria-hidden="true " style="color:blue; " (click)="updateCategory(list)"></i>
+                            <i class="fa fa-trash ml-2 " aria-hidden="true " style="color:red; " (click)="deleteCategory(list.id)"></i>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
